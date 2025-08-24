@@ -50,6 +50,61 @@ financedb/
 
 
 ---
+## 🚀 Running DBT commands
+
+dbt run
+```
+18:47:38  1 of 5 OK created sql table model fincorp_prod.stg_account_summary ............. [SUCCESS 1 in 2.45s]
+18:47:38  2 of 5 START sql table model fincorp_prod.stg_customer_details ................. [RUN]
+ 1.19s]
+18:47:41  4 of 5 START sql table model fincorp_prod.stg_banking_info_raw ................. [RUN]
+18:47:42  4 of 5 OK created sql table model fincorp_prod.stg_banking_info_raw ............ [SUCCESS 1 in 1.12s]
+18:47:42  5 of 5 START sql table model fincorp_prod.stg_banking_info_final ............... [RUN]
+18:47:43  5 of 5 OK created sql table model fincorp_prod.stg_banking_info_final .......... [SUCCESS 1 in 0.59s]
+18:47:43
+18:47:43  Finished running 5 table models in 0 hours 0 minutes and 9.40 seconds (9.40s).
+18:47:43
+18:47:43  Completed successfully
+18:47:43
+18:47:43  Done. PASS=5 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=5
+```
+
+dbt snapshot
+```
+18:48:52  1 of 2 OK snapshotted fincorp_prod.account_summary_snapshot .................... [SUCCESS 0 in 3.70s]
+18:48:52  2 of 2 START snapshot fincorp_prod.customer_details_snapshot ................... [RUN]
+18:48:55  2 of 2 OK snapshotted fincorp_prod.customer_details_snapshot ................... [SUCCESS 0 in 2.72s]
+18:48:55  
+18:48:55  Finished running 2 snapshots in 0 hours 0 minutes and 9.05 seconds (9.05s).
+18:48:55  
+18:48:55  Completed successfully
+18:48:55
+18:48:55  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=2
+```
+
+dbt test
+```
+18:49:22  1 of 7 PASS not_null_stg_account_summary_account_id ............................ [PASS in 1.39s]
+18:49:22  2 of 7 START test not_null_stg_banking_info_raw_transaction_id ................. [RUN]
+18:49:22  2 of 7 PASS not_null_stg_banking_info_raw_transaction_id ....................... [PASS in 0.12s]
+18:49:22  3 of 7 START test not_null_stg_customer_details_customer_id .................... [RUN]
+18:49:22  3 of 7 PASS not_null_stg_customer_details_customer_id .......................... [PASS in 0.18s]
+18:49:22  4 of 7 START test not_null_stg_recent_txns_transaction_id ...................... [RUN]
+18:49:22  4 of 7 PASS not_null_stg_recent_txns_transaction_id ............................ [PASS in 0.14s]
+18:49:22  5 of 7 START test unique_stg_account_summary_account_id ........................ [RUN]
+18:49:23  5 of 7 PASS unique_stg_account_summary_account_id .............................. [PASS in 0.47s]
+18:49:23  6 of 7 START test unique_stg_customer_details_customer_id ...................... [RUN]
+18:49:23  6 of 7 PASS unique_stg_customer_details_customer_id ............................ [PASS in 0.18s]
+18:49:23  7 of 7 START test unique_stg_recent_txns_transaction_id ........................ [RUN]
+18:49:23  7 of 7 PASS unique_stg_recent_txns_transaction_id .............................. [PASS in 0.17s]
+18:49:24
+18:49:24  Finished running 7 data tests in 0 hours 0 minutes and 3.99 seconds (3.99s).
+18:49:24
+18:49:24  Completed successfully
+18:49:24
+```
+
+---
 
 ## ⚙️ How It Works
 1. **Raw Data Ingestion:** Financial CSV datasets are uploaded to **AWS S3**, staged in Snowflake, and loaded into raw tables.  
