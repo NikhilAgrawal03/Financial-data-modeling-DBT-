@@ -28,22 +28,24 @@ The pipeline ingests raw CSVs, transforms them into analytics-ready datasets, an
 ---
 
 ## 📂 Project Structure
+```
 financedb/
 ├── models/
-│ └── banking_info/
-│ └── staging/
-│ ├── stg_account_summary.sql
-│ ├── stg_banking_info_raw.sql
-│ ├── stg_customer_details.sql
-│ ├── stg_recent_txns.sql
-│ └── schema.yml
+│   └── banking_info/
+│       └── staging/
+│           ├── stg_account_summary.sql
+│           ├── stg_banking_info_raw.sql
+│           ├── stg_customer_details.sql
+│           ├── stg_recent_txns.sql
+│           └── schema.yml
 ├── snapshots/
-│ └── accounts_snapshot.sql
+│   └── accounts_snapshot.sql
 ├── macros/
-│ └── generate_schema_name.sql
+│   └── generate_schema_name.sql
 ├── dbt_project.yml
 ├── README.md
 └── .gitignore
+```
 
 
 
