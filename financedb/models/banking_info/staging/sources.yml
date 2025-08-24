@@ -1,0 +1,8 @@
+sources:
+  - name: financedb_raw
+    database: financedb
+    schema: raw
+    tables:
+      - name: bank_transactions
+      - name: bank_customers
+      - name: bank_accounts

@@ -1,0 +1,82 @@
+
+version: 2
+
+models:
+  - name: stg_recent_txns
+    description: "Extracting recent banking transactions with customer and account details"
+    columns:
+      - name: transaction_id
+        description: "Unique identifier for each transaction"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Identifier for the customer associated with the transaction"
+      - name: account_id
+        description: "Identifier for the account associated with the transaction"
+      - name: transaction_date
+        description: "Date of the transaction"
+      - name: amount
+        description: "Amount of the transaction"
+      - name: transaction_type
+        description: "Type of transaction (e.g., debit, credit)"
+
+  - name: stg_customer_details
+    description: "Extracting customer details for banking transactions"
+    columns:
+      - name: customer_id
+        description: "Unique identifier for each customer"
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: "First name of the customer"
+      - name: last_name
+        description: "Last name of the customer"
+      - name: dob
+        description: "Date of birth of the customer"
+      - name: city
+        description: "City where the customer resides"
+
+  - name: stg_account_summary
+    description: "Extracting account summary details for banking transactions"
+    columns:
+      - name: account_id
+        description: "Unique identifier for each account"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Identifier for the customer associated with the account"
+      - name: account_type
+        description: "Type of account (e.g., savings, checking)"
+      - name: open_date
+        description: "Date when the account was opened"
+      - name: status
+        description: "Current status of the account (e.g., active, closed)"
+
+  - name: stg_banking_info_raw
+    description: "Staging model combining transaction, account, and customer details"
+    columns:
+      - name: transaction_id
+        description: "Unique identifier for each transaction"
+        tests:
+          - not_null
+      - name: transaction_date
+        description: "Date of the transaction"
+      - name: transaction_type
+        description: "Type of transaction (e.g., debit, credit)"
+      - name: amount
+        description: "Amount of the transaction"
+      - name: account_type
+        description: "Type of account (e.g., savings, checking)"
+      - name: status
+        description: "Current status of the account (e.g., active, closed)"
+      - name: first_name
+        description: "First name of the customer"
+      - name: last_name
+        description: "Last name of the customer"
+      - name: city
+        description: "City where the customer resides"
+      - name: customer_age
+        description: "Age of the customer at the current date"
